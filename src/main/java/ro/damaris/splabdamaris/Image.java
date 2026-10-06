@@ -1,6 +1,6 @@
 package ro.damaris.splabdamaris;
 
-public class Image implements Element {
+public class Image extends Element {
     private String url;
 
     public Image(String url) {
