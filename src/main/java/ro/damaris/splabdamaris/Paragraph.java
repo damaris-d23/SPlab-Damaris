@@ -2,21 +2,31 @@ package ro.damaris.splabdamaris;
 
 public class Paragraph extends Element {
     private String text;
+    private AlignStrategy alignStrategy; // atributul pentru strategie[cite: 27]
 
     public Paragraph(String text) {
         this.text = text;
     }
 
-    @Override
-    public void print() {
-        System.out.println("Paragraph: " + text); // Formatul cerut la punctul 17[cite: 12]
+    // Setter-ul necesar pentru schimbarea strategiei la runtime[cite: 27]
+    public void setAlignStrategy(AlignStrategy alignStrategy) {
+        this.alignStrategy = alignStrategy;
     }
 
     @Override
-    public void add(Element element) {}
+    public void print() {
+        if (alignStrategy != null) {
+            alignStrategy.render(this.text);
+        } else {
+            System.out.println("Paragraph: " + text);
+        }
+    }
 
     @Override
-    public void remove(Element element) {}
+    public void add(Element element) { }
+
+    @Override
+    public void remove(Element element) { }
 
     @Override
     public Element get(int index) {
