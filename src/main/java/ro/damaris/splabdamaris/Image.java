@@ -1,15 +1,22 @@
 package ro.damaris.splabdamaris;
+import java.util.concurrent.TimeUnit;
 
 public class Image extends Element {
     private String url;
 
-    public Image(String url) {
-        this.url = url;
+    public Image(String name) {
+        this.url = name;
+        try {
+            // Se adaugă o întârziere de 5 secunde pentru a simula încărcarea unei imagini mari
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void print() {
-        System.out.println("Image with name: " + url); // Formatul cerut la punctul 17[cite: 12]
+        System.out.println("Image with name: " + url);
     }
 
     @Override
