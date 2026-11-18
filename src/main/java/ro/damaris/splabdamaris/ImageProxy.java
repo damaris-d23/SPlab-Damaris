@@ -2,7 +2,12 @@ package ro.damaris.splabdamaris;
 
 import jakarta.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+
 @Entity
+@Getter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ImageProxy extends Element {
     private String url;
 

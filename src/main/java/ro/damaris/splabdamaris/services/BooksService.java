@@ -1,40 +1,39 @@
 package ro.damaris.splabdamaris.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ro.damaris.splabdamaris.models.Book;
+import ro.damaris.splabdamaris.Book;
+import ro.damaris.splabdamaris.reporsitories.CrudRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BooksService {
-    private final List<Book> books = new ArrayList<>();
-    private long idCounter = 1;
+
+    private final CrudRepository<Book, Long> booksRepository;
 
     public List<Book> getAllBooks() {
-        return books;
+        return booksRepository.findAll();
     }
 
-    public Optional<Book> getBook(Long id) {
-        return books.stream().filter(b -> b.getId().equals(id)).findFirst();
+    public Optional<Book> getBookById(Long id) {
+        return booksRepository.findById(id);
     }
 
-    public Book addBook(Book book) {
-        book.setId(idCounter++);
-        books.add(book);
-        return book;
+    public Book createBook(Book book) {
+        return booksRepository.save(book);
     }
 
-    public Book updateBook(Long id, Book updatedBook) {
-        return getBook(id).map(book -> {
-            book.setTitle(updatedBook.getTitle());
-            book.setAuthor(updatedBook.getAuthor());
-            return book;
-        }).orElse(null);
+    public Optional<Book> updateBook(Long id, Book updatedBook) {
+        return booksRepository.findById(id).map(existingBook -> {
+            existingBook.setTitle(updatedBook.getTitle());
+            return booksRepository.save(existingBook);
+        });
     }
 
-    public boolean deleteBook(Long id) {
-        return books.removeIf(b -> b.getId().equals(id));
+    public void deleteBook(Long id) {
+        booksRepository.deleteById(id);
     }
 }

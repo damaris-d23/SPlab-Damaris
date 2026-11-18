@@ -1,17 +1,25 @@
 package ro.damaris.splabdamaris;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Section extends Element {
+
     protected String title;
 
     @OneToMany(cascade = CascadeType.ALL)
     protected List<Element> children = new ArrayList<>();
 
-    public Section() {} // Constructor gol obligatoriu pt JPA
+    public Section() {} // Constructor gol obligatoriu pt JPA și JSON
 
     public Section(String title) {
         this.title = title;

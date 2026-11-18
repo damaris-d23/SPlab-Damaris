@@ -1,12 +1,10 @@
 package ro.damaris.splabdamaris;
 
-import org.h2.server.web.WebServlet; // Import nou
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletRegistrationBean; // Import nou
 import org.springframework.context.annotation.Bean;
-import ro.damaris.splabdamaris.repositories.BooksRepository;
+import ro.damaris.splabdamaris.reporsitories.BooksRepository;
 
 @SpringBootApplication
 public class SPlabDamarisApplication {

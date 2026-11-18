@@ -1,4 +1,4 @@
-package ro.damaris.splabdamaris.repositories;
+package ro.damaris.splabdamaris.reporsitories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
