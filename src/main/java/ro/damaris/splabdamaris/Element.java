@@ -1,5 +1,6 @@
 package ro.damaris.splabdamaris;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,9 +14,19 @@ public abstract class Element {
     @Transient // Spunem bazei de date să ignore acest câmp temporar pentru a evita erorile
     protected Element parent = null;
 
-    // ... Păstrează restul codului exact așa cum era (get/set parent, metodele abstracte)
-    public Element getParent() { return parent; }
-    public void setParent(Element parent) { this.parent = parent; }
+    public Long getId() {
+        return id;
+    }
+
+    @JsonIgnore
+    public Element getParent() {
+        return parent;
+    }
+
+    public void setParent(Element parent) {
+        this.parent = parent;
+    }
+
     public abstract void print();
     public abstract void add(Element element);
     public abstract void remove(Element element);

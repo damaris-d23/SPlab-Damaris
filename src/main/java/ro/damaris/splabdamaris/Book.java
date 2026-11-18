@@ -3,6 +3,12 @@ package ro.damaris.splabdamaris;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+
+
+@Getter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 @Entity
 public class Book extends Section {

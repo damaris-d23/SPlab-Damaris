@@ -1,6 +1,6 @@
 package ro.damaris.splabdamaris.commands;
 
-import ro.damaris.splabdamaris.models.Book;
+import ro.damaris.splabdamaris.Book;
 import ro.damaris.splabdamaris.services.BooksService;
 
 public class AddBookCommand implements Command<Book> {
@@ -15,6 +15,6 @@ public class AddBookCommand implements Command<Book> {
     @Override
     public Book execute() {
         // Logica este delegată către Receiver (BooksService)
-        return booksService.addBook(book);
+        return booksService.createBook(book);
     }
 }
