@@ -1,10 +1,18 @@
 package ro.damaris.splabdamaris;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Book extends Section {
+
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Author> authors = new ArrayList<>();
+
+    public Book() {
+        super(""); // Constructor gol obligatoriu pt JPA
+    }
 
     public Book(String title) {
         super(title);

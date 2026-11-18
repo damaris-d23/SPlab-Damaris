@@ -1,7 +1,13 @@
 package ro.damaris.splabdamaris;
 
+import jakarta.persistence.*;
+
+@Entity
+@jakarta.persistence.Table(name = "DocumentTable") // Această linie rezolvă eroarea de SQL
 public class Table extends Element {
     private String title;
+
+    public Table() {}
 
     public Table(String title) {
         this.title = title;
@@ -22,6 +28,7 @@ public class Table extends Element {
     public Element get(int index) {
         return null;
     }
+
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);

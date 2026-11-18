@@ -1,7 +1,12 @@
 package ro.damaris.splabdamaris;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Image extends Element {
     private String url;
+
+    public Image() {} // Constructor gol obligatoriu JPA
 
     public Image(String url) {
         this.url = url;
@@ -9,7 +14,7 @@ public class Image extends Element {
 
     @Override
     public void print() {
-        System.out.println("Image with name: " + url); // Formatul cerut la punctul 17[cite: 12]
+        System.out.println("Image with name: " + url);
     }
 
     @Override
@@ -22,6 +27,7 @@ public class Image extends Element {
     public Element get(int index) {
         return null;
     }
+
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);

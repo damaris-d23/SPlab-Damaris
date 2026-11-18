@@ -1,7 +1,12 @@
 package ro.damaris.splabdamaris;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Paragraph extends Element {
     private String text;
+
+    public Paragraph() {} // Constructor gol obligatoriu JPA
 
     public Paragraph(String text) {
         this.text = text;
@@ -9,7 +14,7 @@ public class Paragraph extends Element {
 
     @Override
     public void print() {
-        System.out.println("Paragraph: " + text); // Formatul cerut la punctul 17[cite: 12]
+        System.out.println("Paragraph: " + text);
     }
 
     @Override
@@ -22,9 +27,9 @@ public class Paragraph extends Element {
     public Element get(int index) {
         return null;
     }
+
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
-
 }
