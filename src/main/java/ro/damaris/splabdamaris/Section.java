@@ -1,11 +1,17 @@
 package ro.damaris.splabdamaris;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Section extends Element {
     protected String title;
-    protected List<Element> children = new ArrayList<>(); // stocăm copiii într-o listă
+
+    @OneToMany(cascade = CascadeType.ALL)
+    protected List<Element> children = new ArrayList<>();
+
+    public Section() {} // Constructor gol obligatoriu pt JPA
 
     public Section(String title) {
         this.title = title;
