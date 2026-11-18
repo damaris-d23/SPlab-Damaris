@@ -8,6 +8,7 @@ import ro.damaris.splabdamaris.Book;
 import ro.damaris.splabdamaris.commands.AddBookCommand;
 import ro.damaris.splabdamaris.commands.Command;
 import ro.damaris.splabdamaris.commands.CommandExecutor;
+import ro.damaris.splabdamaris.observer.AllBooksSubject;
 import ro.damaris.splabdamaris.services.BooksService;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class BooksController {
 
     private final BooksService booksService;
     private final CommandExecutor commandExecutor;
+    private final AllBooksSubject allBooksSubject;
 
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
@@ -35,7 +37,9 @@ public class BooksController {
     @PostMapping
     public ResponseEntity<Book> createBook(@RequestBody Book book) {
         Command<Book> command = new AddBookCommand(booksService, book);
-        return ResponseEntity.ok(command.execute());
+        Book createdBook = command.execute();
+        allBooksSubject.add(createdBook);
+        return ResponseEntity.ok(createdBook);
     }
 
     @PostMapping("/async")
